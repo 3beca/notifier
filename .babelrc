@@ -1,0 +1,9 @@
+{
+  "presets": [["@babel/preset-env", {
+    "targets": {
+      "node": "10.15.1"
+    }
+  }]],
+  "plugins": ["@babel/transform-runtime", "@babel/plugin-proposal-object-rest-spread"],
+  "sourceMaps": "both"
+}

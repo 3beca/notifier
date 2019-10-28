@@ -1,0 +1,25 @@
+version: '2'
+services:
+    mongomemorydb:
+        build: ./DockerMongoMemory
+        container_name: "mongomemorydb"
+        environment:
+          - MONGO_DATA_DIR=/data/db
+        ports:
+          - 27017:27017
+    notifier:
+      image: node:latest
+      container_name: "notifier"
+      environment:
+        - NODE_ENV=development
+        - MONGODB_URL=mongodb://mongomemorydb
+        - DATABASE_NAME=tribeca_notifier
+      working_dir: /notifier
+      command: bash -c "npm ci && npm run test"
+      volumes:
+        - ./:/notifier
+      ports:
+        - "30701:30701"
+        - "9229:9229"
+      depends_on:
+        - mongomemorydb
