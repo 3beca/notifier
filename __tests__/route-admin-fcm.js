@@ -46,7 +46,7 @@ jest.mock('fs');
 describe(
     'Admin FCM setFCMtoAppId should',
     () => {
-        let db, fcm;//, oldDbName;
+        let db, fcm;
         const res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn().mockReturnThis()
@@ -54,15 +54,13 @@ describe(
 
         beforeAll(
             async () => {
-                //oldDbName = config.mongodb.dbname;
                 config.mongodb.dbname = 'notifier-test-fcm-admin';
                 db = await startDatabase();
             }
         );
         afterAll(
             async () => {
-                //config.mongodb.dbname = oldDbName;
-                db.close();
+                await db.close();
             }
         );
         beforeEach(

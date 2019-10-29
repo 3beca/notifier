@@ -22,7 +22,7 @@ describe(
         afterAll(
             async () => {
                 config.mongodb.dbname = oldDbName;
-                db.close();
+                await db.close();
             }
         );
         beforeEach(
@@ -80,7 +80,6 @@ describe(
             async () => {
                 expect.assertions(1);
 
-                const fcmAppsExpected = {};
                 fcm.initializeApp = jest.fn().mockImplementation((credential, appId) => ({...credential, appId}));
                 fcm.credential.cert = jest.fn().mockImplementation(cred => cred);
                 const fakeMongo = { collection: () => ({ find: () => ({ toArray: jest.fn().mockRejectedValue(new Error('Mongo Error'))})})};

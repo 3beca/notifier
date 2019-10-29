@@ -2,7 +2,6 @@ import {
     startDatabase
 } from '../src/database';
 import app from '../src/app';
-import util from 'util';
 
 describe(
     'App should',
@@ -51,7 +50,5 @@ describe(
                 });
             }
         );
-
-
     }
 );

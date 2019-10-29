@@ -49,7 +49,7 @@ describe(
         );
         afterAll(
             async () => {
-                db.close();
+                await db.close();
             }
         );
         beforeEach(
