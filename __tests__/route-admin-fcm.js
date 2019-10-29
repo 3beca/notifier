@@ -16,8 +16,6 @@ import {
     ERROR_DATABASE
 } from '../src/constants/errors';
 import fs from 'fs';
-import * as fcm from 'firebase-admin';
-
 const fakeFile = {
     fieldname: 'credentials',
     originalname: 'credentials.json',
