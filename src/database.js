@@ -20,5 +20,5 @@ export async function startDatabase() {
     const client = await MongoClient.connect(config.mongodb.url, { useNewUrlParser: true, useUnifiedTopology: true });
     const db = client.db(config.mongodb.dbname);
     await ensureIndexes(db);
-    return db;
+    return {db, client};
 }

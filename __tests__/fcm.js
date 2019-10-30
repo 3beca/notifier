@@ -11,18 +11,18 @@ jest.mock('firebase-admin');
 describe(
     'FCM module should',
     () => {
-        let db, oldDbName;
+        let db, mongoClient, oldDbName;
         beforeAll(
             async () => {
                 oldDbName = config.mongodb.dbname;
                 config.mongodb.dbname = 'notifier-test-fcm';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
             }
         );
         afterAll(
             async () => {
                 config.mongodb.dbname = oldDbName;
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(

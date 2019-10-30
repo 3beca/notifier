@@ -32,6 +32,7 @@ describe(
     'Topic route getTopicsFromUser',
     () => {
         let db,
+            mongoClient,
             targetCollection,
             targetModel;
         const res = {
@@ -42,14 +43,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-topic-admin-getTopicsFromUser';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(
@@ -172,6 +173,7 @@ describe(
     'Topic route addUser2Topics',
     () => {
         let db,
+            mongoClient,
             targetCollection,
             targetModel;
         const res = {
@@ -182,14 +184,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-topic-admin-addUser2Topics';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(
@@ -471,6 +473,7 @@ describe(
     'Topic route deleteAllUsersFromTopics',
     () => {
         let db,
+            mongoClient,
             targetCollection,
             targetModel;
         const res = {
@@ -481,14 +484,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-topic-admin-deleteAllUsersFromTopics';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(
@@ -702,6 +705,7 @@ describe(
     'Topic route deleteUserFromTopics',
     () => {
         let db,
+            mongoClient,
             targetCollection,
             targetModel;
         const res = {
@@ -712,14 +716,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-topic-admin-deleteTopics';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(

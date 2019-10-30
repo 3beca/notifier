@@ -6,15 +6,15 @@ import app from '../src/app';
 describe(
     'App should',
     () => {
-        let db, fcm;
+        let db, mongoClient, fcm;
         beforeAll(
             async () => {
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
             }
         );
         afterAll(
             async () => {
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(

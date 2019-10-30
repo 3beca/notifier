@@ -31,18 +31,18 @@ describe(
             json: jest.fn().mockReturnThis(),
             end: jest.fn().mockReturnThis()
         };
-        let db, targetCollection, targetModel;
+        let db, mongoClient, targetCollection, targetModel;
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-notify-notify2Device';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(

@@ -28,6 +28,7 @@ describe(
     'registerDeviceFromAdmin in register/device route should',
     () => {
         let db,
+        mongoClient,
         targetCollection,
         targetModel;
         const res = {
@@ -39,14 +40,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-register-registerDeviceFromAdmin';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(
@@ -373,6 +374,7 @@ describe(
     'deleteDeviceFromAdmin in register/device route should',
     () => {
         let db,
+        mongoClient,
         targetCollection,
         targetModel;
         const res = {
@@ -384,14 +386,14 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-register-deleteDeviceFromAdmin';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
                 targetCollection = db.collection(TARGETS_COLLECTION);
                 targetModel = targetsFactory(targetCollection);
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(

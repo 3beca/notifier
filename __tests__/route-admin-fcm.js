@@ -44,7 +44,7 @@ jest.mock('fs');
 describe(
     'Admin FCM setFCMtoAppId should',
     () => {
-        let db, fcm;
+        let db, mongoClient, fcm;
         const res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn().mockReturnThis()
@@ -53,12 +53,12 @@ describe(
         beforeAll(
             async () => {
                 config.mongodb.dbname = 'notifier-test-fcm-admin';
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
             }
         );
         afterAll(
             async () => {
-                await db.close();
+                await mongoClient.close();
             }
         );
         beforeEach(
@@ -279,7 +279,7 @@ describe(
 describe(
     'Admin FCM unsetFCMtoAppId should',
     () => {
-        let db, fcm;
+        let db, mongoClient, fcm;
         const res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn().mockReturnThis()
@@ -287,12 +287,12 @@ describe(
 
         beforeAll(
             async () => {
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(
@@ -404,7 +404,7 @@ describe(
 describe(
     'Admin FCM statusFCMFromAppId should',
     () => {
-        let db, fcm;
+        let db, mongoClient, fcm;
         const res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn().mockReturnThis()
@@ -412,12 +412,12 @@ describe(
 
         beforeAll(
             async () => {
-                db = await startDatabase();
+                ({db, mongoClient} = await startDatabase());
             }
         );
         afterAll(
             async () => {
-                db.close();
+                mongoClient.close();
             }
         );
         beforeEach(
