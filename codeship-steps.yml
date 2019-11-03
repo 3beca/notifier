@@ -25,3 +25,7 @@
 - name: docker push
   service: docker
   command: /bin/sh ./var/www/deploy/docker-push.sh
+
+- name: deploy
+  service: deploy
+  command: /bin/sh ./var/www/deploy/deploy.sh

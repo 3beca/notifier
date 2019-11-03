@@ -22,3 +22,14 @@ docker:
   encrypted_env_file: ./deploy/dockercfg.encrypted
   environment:
     - IMAGE_NAME=francescorivola/tribeca-notifier
+
+deploy:
+  build:
+    dockerfile: ./deploy/Dockerfile.deploy-ssh
+    encrypted_args_file: ./deploy/deploy.encrypted
+  encrypted_env_file: ./deploy/deploy.encrypted
+  environment:
+    - IMAGE_NAME=francescorivola/tribeca-notifier
+  volumes_from:
+    - app
+  cached: true

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tribeca-notifier
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: tribeca-notifier
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      run: tribeca-notifier
+  template:
+    metadata:
+      labels:
+        run: tribeca-notifier
+    spec:
+      containers:
+      - name: tribeca-notifier
+        image: {{ .Values.image }}      
+        readinessProbe:
+          httpGet:
+            path: /admin/check-health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5       
+        livenessProbe:
+          exec:
+          httpGet:
+            path: /admin/check-health
+            port: 3000               
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "70Mi"
+            cpu: "20m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: HTTP_PORT
+          value: "3000"
+        - name: MONGODB_URL
+          value: mongodb://10.1.1.1:27017
