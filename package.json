@@ -10,7 +10,7 @@
     "start-watch": "nodemon --inspect=0.0.0.0:9229 -L src/main.js  --exec babel-node",
     "lint": "eslint src",
     "test": "jest --watchAll",
-    "test-ci": "jest --detectOpenHandles",
+    "test-ci": "jest --forceExit",
     "publish-code-coverage": "codecov"
   },
   "repository": {
