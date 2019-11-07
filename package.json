@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.1",
-    "@tribeca/auth-middleware": "^0.1.1",
+    "@tribeca/auth-middleware": "^0.1.5",
     "convict": "^5.2.0",
     "express": "^4.17.1",
     "firebase-admin": "^8.7.0",
