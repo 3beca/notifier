@@ -2,7 +2,7 @@
 A simple notification system
 
 [![CodeFactor](https://www.codefactor.io/repository/github/3beca/notifier/badge)](https://www.codefactor.io/repository/github/3beca/notifier)
-[![Codeship Status for 3beca/notifier](https://app.codeship.com/projects/78b84e00-dcbd-0137-f9d6-5a1d966f44c5/status?branch=master)](https://app.codeship.com/projects/371736)
+![Node.js CI](https://github.com/3beca/notifier/workflows/Node.js%20CI/badge.svg?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=3beca/notifier)](https://dependabot.com)
 [![codecov](https://codecov.io/gh/3beca/notifier/branch/master/graph/badge.svg)](https://codecov.io/gh/3beca/notifier)
 
