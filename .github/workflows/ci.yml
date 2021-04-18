@@ -12,7 +12,6 @@ jobs:
     env:
       CI: true
       IMAGE_NAME: francescorivola/tribeca-notifier
-      SERVICE_NAME: tribeca-notifier
 
     runs-on: ubuntu-latest
 
@@ -52,26 +51,3 @@ jobs:
         repository: ${{ env.IMAGE_NAME }}
         tag_with_ref: true
         tag_with_sha: true
-
-    - name: Copy Helm Chart via ssh
-      if: github.ref == 'refs/heads/master'
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        source: "./charts/**"
-        target: "./charts/${{ env.SERVICE_NAME }}"
-        strip_components: 1
-        rm: true
-
-    - name: Deploy using Helm
-      if: github.ref == 'refs/heads/master'
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        script: /snap/bin/microk8s.helm upgrade ${{ env.SERVICE_NAME }} ./charts/${{ env.SERVICE_NAME }} --set image=${{ env.IMAGE_NAME }}:sha-$(echo ${{ github.sha }} | cut -c1-7) --install --wait
