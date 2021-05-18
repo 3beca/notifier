@@ -28,7 +28,7 @@
   "homepage": "https://github.com/3beca/notifier#readme",
   "author": "juanjofp, francescorivola",
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
+    "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.2",
     "@babel/node": "^7.14.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.14.2",
