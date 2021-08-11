@@ -45,7 +45,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.8",
+    "@babel/runtime": "^7.15.3",
     "@tribeca/auth-middleware": "^0.1.5",
     "convict": "^6.2.0",
     "express": "^4.17.1",
