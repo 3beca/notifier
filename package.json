@@ -50,7 +50,7 @@
     "convict": "^6.2.1",
     "express": "^4.17.3",
     "firebase-admin": "^10.0.2",
-    "mongodb": "^3.6.10",
+    "mongodb": "^4.4.0",
     "multer": "^1.4.4"
   }
 }
